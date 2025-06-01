@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -8,6 +7,7 @@
     body {
       margin: 0;
       background-color: black;
+      overflow: hidden;
     }
     video {
       width: 100vw;
@@ -21,11 +21,11 @@
 </head>
 <body>
 
-  <!-- Vídeo principal amb interpolacions -->
-  <video id="videoPrincipal" src="Did a machine dream about me v3.mov" autoplay muted playsinline></video>
+  <!-- Vídeo principal amb interpolacions i veu -->
+  <video id="videoPrincipal" src="video_principal.mp4" autoplay muted playsinline></video>
 
   <!-- Vídeo de l'esfera en loop -->
-  <video id="videoEsfera" src="audio loop.mov" loop muted playsinline style="display:none;"></video>
+  <video id="videoEsfera" src="loop_esfera.mp4" loop muted playsinline style="display:none;"></video>
 
   <script>
     const principal = document.getElementById('videoPrincipal');
