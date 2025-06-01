@@ -17,20 +17,47 @@
       top: 0;
       left: 0;
     }
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      font-size: 1.5rem;
+      z-index: 2;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Vídeo principal amb interpolacions i veu -->
-  <video id="videoPrincipal" src="video_principal.mp4" autoplay muted playsinline></video>
+  <!-- Pantalla inicial per demanar interacció -->
+  <div id="overlay">Fes clic per començar</div>
 
-  <!-- Vídeo de l'esfera en loop -->
+  <!-- Vídeo principal amb so -->
+  <video id="videoPrincipal" src="video_principal.mp4" playsinline></video>
+
+  <!-- Vídeo de loop/esfera -->
   <video id="videoEsfera" src="loop_esfera.mp4" loop muted playsinline style="display:none;"></video>
 
   <script>
+    const overlay = document.getElementById('overlay');
     const principal = document.getElementById('videoPrincipal');
     const esfera = document.getElementById('videoEsfera');
     let timer;
+
+    // Quan es fa clic al overlay, comença el vídeo principal amb so
+    overlay.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      principal.muted = false;
+      principal.play();
+    });
 
     function mostraPrincipal() {
       principal.style.display = 'block';
@@ -46,12 +73,13 @@
       esfera.play();
     }
 
+    // Control de moviment del ratolí
     document.addEventListener('mousemove', () => {
       mostraPrincipal();
       clearTimeout(timer);
       timer = setTimeout(() => {
         mostraEsfera();
-      }, 4000); // 4 segons sense moviment → esfera
+      }, 10000); // 10 segons sense moviment → esfera
     });
   </script>
 
