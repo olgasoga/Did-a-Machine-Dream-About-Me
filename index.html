@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Did a Machine Dream Me?</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+    }
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Vídeo principal amb interpolacions -->
+  <video id="videoPrincipal" src="Did a machine dream about me v3.mov" autoplay muted playsinline></video>
+
+  <!-- Vídeo de l'esfera en loop -->
+  <video id="videoEsfera" src="audio loop.mov" loop muted playsinline style="display:none;"></video>
+
+  <script>
+    const principal = document.getElementById('videoPrincipal');
+    const esfera = document.getElementById('videoEsfera');
+    let timer;
+
+    function mostraPrincipal() {
+      principal.style.display = 'block';
+      esfera.style.display = 'none';
+      principal.play();
+      esfera.pause();
+    }
+
+    function mostraEsfera() {
+      principal.pause();
+      principal.style.display = 'none';
+      esfera.style.display = 'block';
+      esfera.play();
+    }
+
+    document.addEventListener('mousemove', () => {
+      mostraPrincipal();
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        mostraEsfera();
+      }, 4000); // 4 segons sense moviment → esfera
+    });
+  </script>
+
+</body>
+</html>
